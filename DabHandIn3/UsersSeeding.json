@@ -1,0 +1,30 @@
+[
+  {
+    "Name": "Rosendal",
+    "Gender": "Male",
+    "Circles": [],
+    "Email": "Ros@Ros.ros",
+    "Age": 21
+  },
+  {
+    "Name": "Bommy",
+    "Gender": "Male",
+    "Circles": [],
+    "Email": "Bommy@Bommy.bommy",
+    "Age": 22
+  },
+  {
+    "Name": "Roman",
+    "Gender": "Male",
+    "Circles": [],
+    "Email": "Roman@Roman.roman",
+    "Age": 21
+  },
+  {
+    "Name": "Agri",
+    "Gender": "Male",
+    "Circles": [],
+    "Email": "Agri@Agri.agri",
+    "Age": 22
+  }
+]

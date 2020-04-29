@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DabHandIn3.Services
 {
@@ -20,32 +21,32 @@ namespace DabHandIn3.Services
 
         public List<User> Get()
         {
-            return _users.Find<User>(User => true).ToList();
+            return _users.Find<User>(user => true).ToList();
         }
 
         public User Get(string id)
         {
-            return _users.Find<User>(User => User.Id == id).FirstOrDefault();
+            return _users.Find<User>(user => user.Id == id).FirstOrDefault();
         }
 
-        public User Create(User User)
+        public User Create(User user)
         {
-            _users.InsertOne(User);
-            return User;
+            _users.InsertOne(user);
+            return user;
         }
 
-        public void Update(string id, User User)
+        public void Update(string id, User userIn)
         {
-            _users.ReplaceOne(User => User.Id == id, User);
+            _users.ReplaceOne(user => user.Id == id, userIn);
         }
 
         public void Remove(string id)
         {
-            _users.DeleteOne(User => User.Id == id);
+            _users.DeleteOne(user => user.Id == id);
         }
-        public void Remove(User User)
+        public void Remove(User userIn)
         {
-            _users.DeleteOne(User => User.Id == User.Id);
+            _users.DeleteOne(user => user.Id == userIn.Id);
         }
     }
 }

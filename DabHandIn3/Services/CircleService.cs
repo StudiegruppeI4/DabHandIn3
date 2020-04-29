@@ -35,21 +35,18 @@ namespace DabHandIn3.Services
             return circle;
         }
 
-        public void Update(string id, Circle circle)
+        public void Update(string id, Circle circleIn)
         {
-            _circles.ReplaceOne(circle => circle.Id == id, circle);
+            _circles.ReplaceOne(circle => circle.Id == id, circleIn);
         }
 
         public void Remove(string id)
         {
             _circles.DeleteOne(circle => circle.Id == id);
         }
-        public void Remove(Circle circle)
+        public void Remove(Circle circleIn)
         {
-            _circles.DeleteOne(circle => circle.Id == circle.Id);
+            _circles.DeleteOne(circle => circle.Id == circleIn.Id);
         }
-
-
-
     }
 }

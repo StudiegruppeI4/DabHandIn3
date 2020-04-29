@@ -18,32 +18,32 @@ namespace DabHandIn3.Services
 
         public List<Post> Get()
         {
-            return _posts.Find<Post>(Post => true).ToList();
+            return _posts.Find<Post>(post => true).ToList();
         }
 
         public Post Get(string id)
         {
-            return _posts.Find<Post>(Post => Post.Id == id).FirstOrDefault();
+            return _posts.Find<Post>(post => post.Id == id).FirstOrDefault();
         }
 
-        public Post Create(Post Post)
+        public Post Create(Post post)
         {
-            _posts.InsertOne(Post);
-            return Post;
+            _posts.InsertOne(post);
+            return post;
         }
 
-        public void Update(string id, Post Post)
+        public void Update(string id, Post postIn)
         {
-            _posts.ReplaceOne(Post => Post.Id == id, Post);
+            _posts.ReplaceOne(post => post.Id == id, postIn);
         }
 
         public void Remove(string id)
         {
-            _posts.DeleteOne(Post => Post.Id == id);
+            _posts.DeleteOne(post => post.Id == id);
         }
-        public void Remove(Post Post)
+        public void Remove(Post postIn)
         {
-            _posts.DeleteOne(Post => Post.Id == Post.Id);
+            _posts.DeleteOne(post => post.Id == postIn.Id);
         }
     }
 }

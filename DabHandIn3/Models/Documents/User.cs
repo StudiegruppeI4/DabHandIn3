@@ -17,7 +17,6 @@ namespace DabHandIn3.Models
         [JsonProperty("Name")]
         public string UserName { get; set; }
         public string Gender { get; set; }
-        public List<Circle> Circles { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
 
