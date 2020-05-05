@@ -14,10 +14,12 @@ namespace DabHandIn3.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly PostService _postService;
 
-        public UsersController(UserService userService)
+        public UsersController(UserService userService, PostService postService)
         {
             _userService = userService;
+            _postService = postService;
         }
     
         [HttpGet]
@@ -35,7 +37,18 @@ namespace DabHandIn3.Controllers
                 return NotFound();
             }
             return user;
+        }
 
+        [HttpGet("Feed/{id}")]
+        public ActionResult<List<Post>> GetFeed(string id)
+        {
+            return _postService.ShowUserFeed(id).OrderByDescending(p => p.CreationTime).Take(10).ToList();
+        }
+
+        [HttpGet("Wall/{userId}-{guestId}")]
+        public ActionResult<List<Post>> GetWall(string userId, string guestId)
+        {
+            return _postService.ShowUserWall(userId, guestId).OrderByDescending(p => p.CreationTime).Take(10).ToList();
         }
 
         [HttpPost]

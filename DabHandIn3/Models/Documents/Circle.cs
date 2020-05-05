@@ -13,9 +13,10 @@ namespace DabHandIn3.Models
         [BsonElement("Name")]
         [JsonProperty("Name")]
         public string CircleName { get; set; }
-        public List<User> Users { get; set; }
         public User Admin { get; set; }
-        public List<Post> Posts { get; set; }
+        public bool Public { get; set; }
+        public List<string> UserIds { get; set; }
+        public List<string> PostIds { get; set; }
 
     }
 }

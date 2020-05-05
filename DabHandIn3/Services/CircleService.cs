@@ -29,6 +29,11 @@ namespace DabHandIn3.Services
             return _circles.Find<Circle>(circle => circle.Id == id).FirstOrDefault();
         }
 
+        public List<Circle> GetCirclesFromUserId(string userId)
+        {
+            return _circles.Find<Circle>(circle => circle.UserIds.Contains(userId)).ToList();
+        }
+
         public Circle Create(Circle circle)
         {
             _circles.InsertOne(circle);

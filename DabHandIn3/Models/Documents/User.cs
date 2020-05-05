@@ -19,6 +19,7 @@ namespace DabHandIn3.Models
         public string Gender { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
-
+        public List<string> Following { get; set; }
+        public List<string> BlockedUsers { get; set; }
     }
 }

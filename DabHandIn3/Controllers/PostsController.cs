@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DabHandIn3.Models;
+using DabHandIn3.Models.Objects;
 using DabHandIn3.Services;
 
 namespace DabHandIn3.Controllers
@@ -14,10 +15,12 @@ namespace DabHandIn3.Controllers
     public class PostsController : ControllerBase
     {
         private readonly PostService _postService;
+        private readonly CircleService _circleService;
 
-        public PostsController(PostService Postservice)
+        public PostsController(PostService postservice, CircleService circleService)
         {
-            _postService = Postservice;
+            _postService = postservice;
+            _circleService = circleService;
         }
 
         [HttpGet]
@@ -38,11 +41,18 @@ namespace DabHandIn3.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult<Post> Create(Post Post)
+        [HttpPost("{circleId}")]
+        public ActionResult<Post> Create(string circleId, Post post)
         {
-            _postService.Create(Post);
-            return CreatedAtRoute("GetPost", new { id = Post.Id }, Post);
+            Post result = _postService.CreatePost(post.Author.Id, post.Content, circleId);
+            return CreatedAtRoute("GetPost", new { id = result.Id }, result);
+        }
+
+        [HttpPost("Comment/{postId}")]
+        public ActionResult<Post> Create(string postId, Comment comment)
+        {
+            Post result = _postService.CreateComment(postId, comment);
+            return CreatedAtRoute("GetPost", new { id = result.Id }, result);
         }
 
         [HttpPut("{id:length(24)}")]
